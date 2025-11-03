@@ -6,7 +6,8 @@ RUN --mount=type=cache,target=/go/pkg/mod \
     xcaddy build \
     --with github.com/porech/caddy-maxmind-geolocation
 
-RUN wget -O /usr/share/caddy/GeoLite2-Country.mmdb "https://git.io/GeoLite2-Country.mmdb"
+RUN mkdir -p /usr/share/caddy && \
+    wget -O /usr/share/caddy/GeoLite2-Country.mmdb "https://git.io/GeoLite2-Country.mmdb"
 
 FROM caddy:${CADDY_VERSION:-2.10.2}
 
