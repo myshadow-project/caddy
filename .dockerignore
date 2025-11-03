@@ -1,0 +1,9 @@
+.vscode/
+.git/
+.github/
+.gitignore
+.gitkeep
+Dockerfile
+README.md
+*.example
+.example

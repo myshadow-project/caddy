@@ -1,0 +1,10 @@
+{
+	http_port 80
+	https_port 443
+
+	email lingshu@mymirrorai.com
+}
+
+import snippets/*.snippet
+
+import sites-enabled/*.site

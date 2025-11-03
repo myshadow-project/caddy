@@ -1,0 +1,11 @@
+(block_china) {
+	@from_china {
+		maxmind_geolocation {
+			db_path "/usr/share/caddy/GeoLite2-Country.mmdb"
+			allow_countries CN {# Only CN IP will match #}
+		}
+	}
+	handle @from_china {
+		{block}
+	}
+}
