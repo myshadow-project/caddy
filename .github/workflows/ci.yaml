@@ -1,4 +1,4 @@
-name: Deploy to Prod
+name: Build and Push Docker Image
 
 on:
   push:
@@ -26,10 +26,11 @@ jobs:
 
       - name: Extract version
         id: version
+        if: ${{ github.ref_type == 'tag' }}
         run: |
-          # Remove everything after '+' from ref_name (e.g., v2+dev.1 -> v2, v2.0.1 -> v2.0.1)
+          # Remove 'v' prefix and everything after '+' from ref_name (e.g., v2+dev.1 -> 2, v2.0.1 -> 2.0.1)
           VERSION="${{ github.ref_name }}"
-          CLEAN_VERSION=$(echo "$VERSION" | cut -d'+' -f1)
+          CLEAN_VERSION=$(echo "$VERSION" | sed 's/^v//' | cut -d'+' -f1)
           echo "caddy_version=$CLEAN_VERSION" >> $GITHUB_OUTPUT
           echo "Extracted CADDY_VERSION: $CLEAN_VERSION"
 
